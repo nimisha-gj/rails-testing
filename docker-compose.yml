@@ -1,0 +1,21 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: bin/rails server -b 0.0.0.0 -p 3000
+    volumes:
+      - .:/rails # Mount the app code for live changes
+      - rails_storage:/rails/storage # Persist SQLite DB and other storage files
+      - bundle_cache:/usr/local/bundle # Persist gems to speed up subsequent builds
+      # If your master.key is in config/master.key, it will be available.
+      # Otherwise, you might need to set RAILS_MASTER_KEY below.
+    ports:
+      - "3000:3000"
+    environment:
+      - RAILS_ENV=development
+      # - RAILS_MASTER_KEY=your_master_key_here # Uncomment and set if config/master.key is not used/found
+
+volumes:
+  rails_storage:
+  bundle_cache:
