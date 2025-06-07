@@ -32,14 +32,14 @@ service:
   pipelines:
     logs:
       receivers: [otlp]
-      exporters: [otlphttp, debug]
+      exporters: [otlphttp ]
     metrics:
       receivers: [otlp]
-      exporters: [otlphttp, debug]
+      exporters: [otlphttp ]
     traces:
       receivers: [otlp]
       processors: [batch]
-      exporters: [otlphttp, debug]
+      exporters: [otlphttp]
   telemetry:
     logs:
       level: "info"

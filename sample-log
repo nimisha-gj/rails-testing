@@ -1,0 +1,16 @@
+web-1           | [trace_id=bebf4bcf5e5822a68574f8d243566102 span_id=68f5e806ed239b25] Started GET "/hotels" for 172.25.0.1 at 2025-06-07 20:22:33 +0000
+web-1           | [trace_id=bebf4bcf5e5822a68574f8d243566102 span_id=68f5e806ed239b25] Cannot render console from 172.25.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+web-1           | [trace_id=bebf4bcf5e5822a68574f8d243566102 span_id=68f5e806ed239b25]   ActiveRecord::SchemaMigration Load (0.4ms)  SELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='HotelFoodApp'*/
+web-1           | [trace_id=bebf4bcf5e5822a68574f8d243566102 span_id=68f5e806ed239b25] Processing by HotelsController#index as HTML
+web-1           | [trace_id=bebf4bcf5e5822a68574f8d243566102 span_id=e1e2a464b81cd366]   User Load (0.3ms)  SELECT "users".* FROM "users" WHERE "users"."id" = 8 LIMIT 1 /*action='index',application='HotelFoodApp',controller='hotels'*/
+web-1           | [trace_id=bebf4bcf5e5822a68574f8d243566102 span_id=e1e2a464b81cd366]   ↳ app/controllers/application_controller.rb:9:in 'ApplicationController#current_user'
+web-1           | [trace_id=bebf4bcf5e5822a68574f8d243566102 span_id=d6bc63ad8ac378ba]   Rendering layout layouts/application.html.erb
+web-1           | [trace_id=bebf4bcf5e5822a68574f8d243566102 span_id=dc4549ece93deecf]   Rendering hotels/index.html.erb within layouts/application
+web-1           | [trace_id=bebf4bcf5e5822a68574f8d243566102 span_id=dc4549ece93deecf]   Hotel Exists? (1.7ms)  SELECT 1 AS one FROM "hotels" LIMIT 1 /*action='index',application='HotelFoodApp',controller='hotels'*/
+web-1           | [trace_id=bebf4bcf5e5822a68574f8d243566102 span_id=dc4549ece93deecf]   ↳ app/views/hotels/index.html.erb:3
+web-1           | [trace_id=bebf4bcf5e5822a68574f8d243566102 span_id=ab482f4ce50b5485]   Hotel Load (0.6ms)  SELECT "hotels".* FROM "hotels" /*action='index',application='HotelFoodApp',controller='hotels'*/
+web-1           | [trace_id=bebf4bcf5e5822a68574f8d243566102 span_id=ab482f4ce50b5485]   ↳ app/views/hotels/index.html.erb:4
+web-1           | [trace_id=bebf4bcf5e5822a68574f8d243566102 span_id=d6bc63ad8ac378ba]   Rendered hotels/index.html.erb within layouts/application (Duration: 13.1ms | GC: 0.0ms)
+web-1           | [trace_id=bebf4bcf5e5822a68574f8d243566102 span_id=68f5e806ed239b25]   Rendered layout layouts/application.html.erb (Duration: 25.6ms | GC: 0.0ms)
+web-1           | [trace_id=bebf4bcf5e5822a68574f8d243566102 span_id=68f5e806ed239b25] Completed 200 OK in 125ms (Views: 31.5ms | ActiveRecord: 3.8ms (3 queries, 0 cached) | GC: 0.0ms)
+
