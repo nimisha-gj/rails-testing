@@ -16,6 +16,24 @@ services:
       - RAILS_ENV=development
       # - RAILS_MASTER_KEY=your_master_key_here # Uncomment and set if config/master.key is not used/found
 
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib
+    container_name: otel-collector
+    restart: unless-stopped
+    command: ["--config=/etc/otelcol/config.yaml"]
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otelcol/config.yaml
+      - ./traces.log:/var/log/traces.log:ro
+    ports:
+      - "4317:4317"
+      - "8889:8889"
+      - "4318:4318"
+      - "8888:8888"
+      - "8006:8006"
+      - "13133:13133"
+      - "1777:1777"
+      - "55679:55679"
+
 volumes:
   rails_storage:
   bundle_cache:
