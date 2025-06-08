@@ -16,12 +16,7 @@ OpenTelemetry::SDK.configure do |c|
   c.use_all()
 end
 
-# Set up OpenTelemetry log correlation by extending ActiveSupport logging
-# This is compatible with Rails 8.0 initialization process
-
-# First, define a module to add trace context to logs
 module OpenTelemetryLoggingExtension
-  # Override formatter to add trace context to logs
   def self.extended(base)
     class << base
       alias_method :original_formatter, :formatter if method_defined?(:formatter)
