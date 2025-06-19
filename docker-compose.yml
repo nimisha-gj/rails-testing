@@ -13,30 +13,12 @@ services:
     environment:
       - RAILS_ENV=development
       - OTEL_SERVICE_NAME=hotel-food-app
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4318
-  otel-collector:
-    image: otel/opentelemetry-collector-contrib
-    container_name: otel-collector
-    restart: unless-stopped
-    command: ["--config=/etc/otelcol/config.yaml"]
-    volumes:
-      - ./otel-collector-config.yaml:/etc/otelcol/config.yaml
-      - ./traces.log:/var/log/traces.log:ro
-    ports:
-      - "4317:4317"
-      - "8889:8889"
-      - "4318:4318"
-      - "8888:8888"
-      - "8006:8006"
-      - "13133:13133"
-      - "1777:1777"
-      - "55679:55679"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:13133"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 10s
+      # External OTLP collector endpoint
+      - OTEL_EXPORTER_OTLP_ENDPOINT=https://otel.play.base14.io/01jvsbqh714xh44zxjk9d5a70j/otlp
+      # OIDC authentication credentials
+      - OTEL_CLIENT_ID=liveheats-agent
+      - OTEL_CLIENT_SECRET=Uuu7LhVdsfDZqKK6ChmxfODFKYsultIq
+      - OTEL_TOKEN_URL=https://id.b14.dev/realms/liveheats/protocol/openid-connect/token
 
 volumes:
   rails_storage:
